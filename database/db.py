@@ -7,9 +7,8 @@ HOST = "localhost"
 PORT = "5432"
 DATABASE = "customer_clustering"
 
-engine = create_engine(
+DATABASE_URL = (
     f"postgresql+psycopg2://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 )
 
-with engine.connect() as conn:
-    print("Connected")
+engine = create_engine(DATABASE_URL)
