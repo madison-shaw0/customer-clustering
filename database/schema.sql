@@ -42,7 +42,7 @@ CREATE TABLE business_search_seed (
         ON DELETE CASCADE
 );
 
-CREATE TABLE discovered_course (
+CREATE TABLE discovered_source (
     discovered_source_id SERIAL PRIMARY KEY,
     business_id INT NOT NULL,
     url TEXT,
@@ -55,3 +55,17 @@ CREATE TABLE discovered_course (
         REFERENCES business(business_id)
         ON DELETE CASCADE
 );
+
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
+ORDER BY table_name;
+
+TRUNCATE TABLE discovered_source RESTART IDENTITY;
+
+ALTER TABLE discovered_source
+ADD CONSTRAINT unique_discovered_url
+UNIQUE (business_id, url);
+
+SELECT *
+FROM discovered_source;

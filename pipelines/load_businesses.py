@@ -11,3 +11,12 @@ df.to_sql(
 )
 
 print (f"loaded {len(df)} businesses")
+
+df = pd.read_csv("configs/business_alias.csv")
+
+df.to_sql(
+    "business_alias",
+    engine,
+    if_exists="append",
+    index=False
+)
